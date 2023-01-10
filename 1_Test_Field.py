@@ -15,6 +15,9 @@
 
 
 
+# A, B = map(int, input().split())
+# print(A/B)
 
-A, B = map(int, input().split())
-print(A/B)
+D = [0] * 10
+
+print(D)
