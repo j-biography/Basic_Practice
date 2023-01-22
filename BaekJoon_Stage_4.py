@@ -255,3 +255,31 @@ for i in range(T):
      print(sum)
      
      '''
+     
+# 4344
+
+import sys
+
+C = int(sys.stdin.readline())
+
+for i in range(C):
+     # N = list(map(int, input().split()))
+     N = list(map(int, sys.stdin.readline().split()))
+     
+     average = sum(N[1:]) / N[0]
+     count = 0
+     Sum = 0
+     
+     for j in range(N[0]):
+          
+          if N[j+1] > average:
+               Sum += N[j+1]
+               count += 1  
+          
+     value = (count / (len(N)-1)) * 100
+          
+     print(f'{value:0.3f}%')
+    
+               
+
+     
