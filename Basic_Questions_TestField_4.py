@@ -121,7 +121,7 @@ A = []
 for i in range(9):
      A.append(int(input()))
 
-print(max(A))
+print(max(A))      
 print(A.index(max(A))+1)
 
 '''
@@ -144,6 +144,8 @@ for j in range(1,31):
 
 # 3052
 
+'''
+
 Rest = []
 
 for i in range(10):
@@ -155,3 +157,101 @@ for i in range(10):
           continue
           
 print(len(Rest))
+
+'''
+
+# 1546
+
+'''
+
+# N = int(input())
+
+# Score = list(map(int, input().split()))
+
+# M = max(Score)
+
+# Value = (Score[0]*100 + Score[1]*100 + Score[2]*100) / (M*3)
+
+# print(round(Value, 5))
+
+'''
+
+'''
+
+# N = int(input())
+
+# Score = list(map(int, input().split()))
+
+# M = max(Score)
+
+# list = []
+
+# for i in range(N):
+#      list.append(Score[i]*100 / (M*N))
+     
+# print(sum(list))
+
+'''
+
+'''
+
+N = int(input())
+
+Score = list(map(int, input().split()))
+
+M = max(Score)
+
+sum = 0
+
+for i in range(N):
+     sum += (Score[i]*100 / (M*N))
+     
+print(sum)
+
+'''
+
+
+# 8958
+
+
+'''
+     
+import re
+
+T = int(input())
+
+for i in range(T):
+     string = input()
+     string2 = re.findall('[O]+', string)
+     count = 0
+     
+     for j in range(len(string2)):
+          count += (len(string2[j])+1) * len(string2[j]) / 2
+
+     print(int(count))
+          
+     '''
+
+'''
+     
+T = int(input())
+
+for i in range(T):
+     
+     N = input()
+     list_N = list(N)
+     
+     sum = 0
+     count = 1
+     
+     for j in range(len(list_N)):
+          
+          if list_N[j] == 'O':
+               sum += count
+               count += 1
+          else:
+               count = 1
+               
+     print(sum)
+     
+     '''
