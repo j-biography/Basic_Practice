@@ -1,14 +1,15 @@
-N = input()
+# N = input()
 
-print(N[0])
-print(N[1])
+# print(N[0])
+# print(N[1])
 
-print(int(N))
+# print(int(N))
 
-N = input()
+# N = input()
 
-a = int(N)
-b = str(a)
+# a = int(N)
+# b = str(a)
 
-print(b[0])
+# print(b[0])
 
+print(list(range(1,3)))
