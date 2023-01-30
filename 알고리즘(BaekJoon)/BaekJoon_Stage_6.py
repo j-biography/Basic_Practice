@@ -177,6 +177,87 @@ else:
 
 # 1152
 
+'''
+N = input().strip().split() 
+# 입력받은 input 값의 앞/뒤 공백 제거 후, 공백을 기준으로 나누어 리스트 생성.
+
+# N2 = set(N) 
+# 중복값 제거
+# 중복값 제거하면 안되는 조건을 나중에 확인.
+# 조건은 두 번 세 번 꼼꼼하게 볼 것!
+
+print(len(N))
+# 단어 개수 카운트
+'''
+
+# 2908
+
+'''
+A, B = input().split()
+
+A2 = int(A[::-1])
+B2 = int(B[::-1])
+
+if A2 > B2:
+    print(A2)
+else:
+    print(B2)
+'''
+
+# 5622
+
+# 단순한 방식
+'''
+N = input()
+count = 0
+
+for i in range(len(N)):
+    if N[i] in ['A','B','C']:
+        count += 3
+    elif N[i] in ['D','E','F']:
+        count += 4
+    elif N[i] in ['G','H','I']:
+        count += 5
+    elif N[i] in ['J','K','L']:
+        count += 6
+    elif N[i] in ['M','N','O']:
+        count += 7
+    elif N[i] in ['P','Q','R','S']:
+        count += 8
+    elif N[i] in ['T','U','V']:
+        count += 9
+    elif N[i] in ['W','X','Y','Z']:
+        count += 10
+
+print(count)
+    '''
+    
+# 딕셔너리를 생성하여 내부에 {Key : Value}를 정리해두고 사용하는 방식.
+
+N = input()
+count = 0
+
+data = { ('A','B','C') : 3,
+         ('D','E','F') : 4,
+         ('G','H','I') : 5,
+         ('J','K','L') : 6,
+         ('M','N','O') : 7,
+         ('P','Q','R','S') : 8,
+         ('T','U','V') : 9,
+         ('W','X','Y','Z') : 10}
+
+# 딕셔너리 내부엔 unhashable 타입 자료형인 리스트를 넣을 수 없어,
+# unhashable 타입 자료형인 튜플을 넣음.
+
+for key, value in data.items(): # 딕셔너리 내부 튜플(key)에 바로 접근이 불가하여, 딕셔너리를 한 번 풀어내 줌.
+    for i in range(len(N)):
+        if N[i] in key:
+            count += data.get(key)
+            
+print(count)
+    
+
+
 
 
     
