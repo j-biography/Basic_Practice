@@ -185,22 +185,83 @@ for i in range(T):
         
 # 2775
 
-# T = int(input())
+# 아파트 호수별로 리스트를 구현한 다음, 해당 호수의 값 리턴
+'''
+T = int(input())
 
+for i in range(T):
+    k = int(input())
+    n = int(input())
+    num = []
+    for room in range(1, n+1):
+        num.append(room)
+    for floor in range(k):
+        for room in range(1, n):
+            num[0] = 1
+            num[room] = num[room-1] + num[room]
+                
+    print(num[-1])
+    '''
 
-# def home(k, n):
-#     member = 0
-#     for i in range(1, n+1):
-#         member += home(k-1, i)
-#     print(member)
-    
-    
-# for j in range(T):
-#     floor = int(input())
-#     room = int(input())
-#     home(floor, room)
+# 재귀 함수 방식으로, 값 리턴 - 시간 초과
+'''
+def apt(k, n):
+    sum = 0
+    if k == 1:
+        for room in range(1, n+1):
+            sum += room
+    else:
+        for room in range(1, n+1):
+            sum += apt(k-1, room)
+    return sum
 
-    
-    
+   
+T = int(input())
 
-    
+for test in range(T):      
+    k = int(input())
+    n = int(input())
+    print(apt(k, n))
+    '''
+
+# 2839
+
+# (-1) 출력 조건을 미리 넣어준 코드
+'''
+N = int(input())
+
+if N == 4 or N == 7:
+    print(-1)
+else:
+    share = N // 5
+    rest = N % 5
+    while rest%3 != 0:
+        share -= 1
+        rest = N - (share*5)
+    else:
+        print(share + rest//3)
+        '''
+
+# 오히려 이게 미리 (-1) 출력 조건을 넣어준 경우보다 런타임이 짧네..
+'''
+N = int(input())
+
+share = N // 5
+rest = N % 5
+
+while rest % 3 != 0 and share >0 and rest > 0:
+    share -= 1
+    rest = N - (share*5)
+if rest % 3 == 0:    
+    print(share + rest//3)
+else:
+    print(-1)
+    '''
+
+# 10757
+
+import sys
+
+A, B = map(int, sys.stdin.readline().split())
+
+print(A+B)
