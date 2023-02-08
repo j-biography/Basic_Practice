@@ -1,5 +1,4 @@
-# 1. 유효한 팰린드롬
-
+# Q125. 유효한 팰린드롬
 
 # 리스트 방식
 
@@ -31,7 +30,7 @@ def isPalindrome(s:str) -> bool:
         else:
             print('False')
             
-# 슬라이싱 방식
+# 슬라이싱 방식 & 정규 표현식
 
 import re
 
