@@ -107,3 +107,100 @@ else:
 # print(rest)
 # print(list)
 
+
+
+# 변수 이름을 잘 설정하자.
+# 내가 생성한 변수의 역할을 내가 잊음.
+
+'''
+x = int(input())
+
+line = 1
+lineValue = 1
+
+while lineValue < x:
+    line += 1
+    lineValue += line
+else:
+    rest = line-(lineValue-x)
+
+if line % 2 == 0:
+    print(f'{rest}/{line-(rest-1)}')
+else:
+    print(f'{line-(rest-1)}/{rest}')
+    '''
+    
+# 2869
+
+# 시간초과 버전
+'''
+A, B, V = map(int, input().split())
+
+high = 0
+day = 0
+
+while high < V:
+    high += A
+    if high < V:
+        high -= B
+        day += 1
+    else:
+        day += 1
+else:
+    print(day)
+'''
+
+'''
+A, B, V = map(int, input().split())
+
+value = (V/(A-B)) - (B/(A-B))
+
+if value == int(value):
+    print(int(value))
+else:
+    print(int(value+1))
+    '''
+    
+# 10250
+
+'''
+T = int(input())
+
+for i in range(T):
+    H, W, N = map(int, input().split())
+    
+    floor = N%H
+    if floor == 0:
+        floor = H
+    room = N//H
+    if N/H != N//H:
+        room = (N//H) + 1
+    
+    if room < 10:
+        print(f'{floor}0{room}')
+    elif room >= 10:
+        print(f'{floor}{room}')     
+        '''
+        
+        
+# 2775
+
+# T = int(input())
+
+
+# def home(k, n):
+#     member = 0
+#     for i in range(1, n+1):
+#         member += home(k-1, i)
+#     print(member)
+    
+    
+# for j in range(T):
+#     floor = int(input())
+#     room = int(input())
+#     home(floor, room)
+
+    
+    
+
+    
