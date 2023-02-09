@@ -12,4 +12,7 @@
 
 # print(b[0])
 
-print(list(range(1,3)))
+# print(list(range(1,3)))
+
+for i in range(5):
+    print(i)

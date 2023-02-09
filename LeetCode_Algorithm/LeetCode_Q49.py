@@ -9,7 +9,7 @@ A = ['eat','tea','tan','ate','nat','bat']
 for word in A:
     anagrams[''.join(sorted(word))].append(word)
     
-print(anagrams)
+print(anagrams.values())
 
 # print(sorted('dkwerwaafj'))
 # print(''.join(sorted('dkwerwaafj')))
