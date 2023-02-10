@@ -212,12 +212,23 @@ for k in range(len(number)):
         print(number[k])
 '''    
         
-# '에라토스테네스의 채' 알고리즘 활용
+# '에라토스테네스의 채' 알고리즘 활용 >>> 600ms
+'''
 import math
 
 M, N = map(int, input().split())
 
-prime = list(range(M, N+1))
+prime = [True for i in range(N+1)] # 실제 숫자가 아닌 True 값으로만 리스트를 형성하니 시간 소모가 대폭 적어짐.
 
-for i in range(int(math.sqrt(N)+2)):
-    print(i)
+for i in range(2, int(math.sqrt(N))+1):
+    if prime[i] == True:
+        j = 2
+        while i * j <= N:
+            prime[i * j] = False
+            j += 1
+            
+for i in range(M, N+1): # 위에서 한번 쓴 'i'는 다시 써도 됨
+    if i != 1 and prime[i] == True:
+        print(i)
+        '''
+        
