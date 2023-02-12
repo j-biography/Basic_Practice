@@ -232,3 +232,146 @@ for i in range(M, N+1): # 위에서 한번 쓴 'i'는 다시 써도 됨
         print(i)
         '''
         
+# 4948
+# 시간 초과 - prime 리스트 안을 실제 소수들로 채우고, 요소 개수 산출
+'''
+import math
+
+n = int(input())
+
+while n != 0:
+    prime = [i for i in range(n+1, (2*n)+1)]
+    
+    for i in range(2, int(math.sqrt(2*n)+1)):
+        j = 2
+        while i * j <= 2*n:
+            if (i * j) in prime:
+                prime.remove(i * j)
+            j += 1
+    
+    if 1 not in prime:
+        print(len(prime))
+    else:
+        prime.remove(1)
+        print(len(prime))
+        
+    n = int(input())
+    '''
+    
+# 시간 초과 2 - prime 리스트 안을 boolean 타입으로 개선하였으나, 시간 초과
+'''
+import math
+
+n = int(input())
+prime = [True for i in range((2*n)+1)]
+
+while n != 0:
+    for i in range(2, int(math.sqrt(2*n)+1)):
+        j = 2
+        while i * j <= 2*n:
+            prime[i*j] = False
+            j += 1
+            
+    if n == 1:
+        print(1) 
+    else:
+        print(sum(prime[n+1:(2*n)+1]))
+        
+    n = int(input())
+    prime = [True for i in range((2*n)+1)]
+    '''
+    
+# 문제의 Constraint에 전부 부합되는 소수 리스트를 미리 만들고, 
+# 이후 주어지는 n값에 따라 소수의 개수를 산출하는 방향으로 방식 개선
+# 388ms / 통과
+'''
+import math
+
+prime = [True for i in range((2*123456)+1)]
+
+for i in range(2, int(math.sqrt(2*123456))+1):
+    j = 2
+    while i*j <= 2*123456:
+        prime[i*j] = False
+        j += 1
+
+n = int(input())
+
+while n != 0:
+    print(sum(prime[n+1 : (2*n)+1]))
+    
+    n = int(input())
+    '''
+    
+# 9020
+# 투포인트 탐색, 통과했으나 런타임 2808ms, 코드가 지저분함.
+'''
+import math
+
+prime = [i for i in range(2,10000+1)]
+
+for i in range(2, int(math.sqrt(10000))+1):
+    j = 2
+    while i * j <= 10000:
+        if i * j in prime:
+            prime.remove(i * j)
+        j += 1
+
+T = int(input())
+
+for i in range(T):
+    n = int(input())
+    plus = 0
+    while int((n/2)+plus) not in prime:
+        plus += 1
+    
+    j = prime.index(int((n/2)+plus))
+    
+    left = j
+    right = j
+    
+    while prime[left] + prime[right] != n:
+        left -= 1
+        if left < 1:
+            right += 1
+            left = j
+            
+    print(prime[left], prime[right])
+    '''
+    
+# 투포인트 탐색, 소수 리스트를 boolean 타입으로 만들고, 코드는 더욱 간략하게.
+# 런타임 528ms
+
+import math
+
+prime = [True for i in range(10000+1)]
+
+for i in range(2, int(math.sqrt(10000))+1):
+    j = 2
+    while i * j <= 10000:
+        prime[i * j] = False
+        j += 1
+
+T = int(input())
+
+for i in range(T):
+    n = int(input())
+    mid_value = int(n/2)
+    left, right = mid_value, mid_value
+    
+    while (prime[left] != True or
+           prime[right] != True):
+        right += 1
+        left = mid_value
+        while prime[right] == True and left+right > n:
+            left -= (right-mid_value)
+            
+    print(left, right)
+        
+    
+        
+    
+    
+        
+        
+        
