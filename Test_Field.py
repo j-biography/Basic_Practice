@@ -14,5 +14,7 @@
 
 # print(list(range(1,3)))
 
-for i in range(5):
-    print(i)
+# for i in range(5):
+#     print(i)
+
+print(max(2, 4))
