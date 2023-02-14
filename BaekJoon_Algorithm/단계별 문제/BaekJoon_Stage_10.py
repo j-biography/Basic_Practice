@@ -125,4 +125,27 @@ input = sys.stdin.readline
 
 N = int(input())
 l = [int(input()) for i in range(N)]
-l2 = 
+l2 = [0] * (max(l)+1-min(l))
+
+def average(l):
+    print(round(sum(l)/len(l)), 1)
+
+def frequency(l, l2):
+    if min(l) < 0:
+        for num in l:
+            l2[num+abs(min(l))] += 1
+            
+        if l2.count(max(l2)) > 1:
+            print(l2.index(max(l2), 2)-abs(min(l)))
+        else:
+            print(l2.index(max(l2))-abs(min(l)))
+            
+    else:
+        for num in 1:
+            l2[num] += 1
+        
+        if l2.count(max(l2)) > 1:
+            print(l2.index(max(l2), 2))
+        else:
+            print(l2.index(max(l2)))
+
