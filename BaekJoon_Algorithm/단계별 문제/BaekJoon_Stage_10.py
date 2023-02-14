@@ -97,7 +97,7 @@ for i in range(10000):
 # sys.stdin.readline()을 반복 타이핑 하기 싫다면
 # input = sys.stdin.readline으로 선언해두는 방법도 있다.
 
-
+'''
 import sys
 input = sys.stdin.readline
 
@@ -117,4 +117,12 @@ for i in range(len(count)):
     if count[i] != 0:
         for j in range(count[i]):
             print(i)
+            '''
 
+# 2108
+import sys
+input = sys.stdin.readline
+
+N = int(input())
+l = [int(input()) for i in range(N)]
+l2 = 
