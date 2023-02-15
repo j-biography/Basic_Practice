@@ -1,7 +1,18 @@
-import re
+pattern = ['aya', 'ye', 'woo', 'ma']
 
-pattern = ('aya')
+babbling = ['aya', 'yee', 'u', 'maa', 'wyeoo']
+babbling_join = ','.join(babbling)
+babbling_2 = []
 
-babbling = ["aya", "yee", "u", "maa", "wyeoo"]
+for i in pattern:
+    if i in babbling_join:
+        new = babbling_join.replace(i,'')
+babbling_2.append(new)
+    
+print(babbling_2)
+        
+            
+            
+# a = ['a','b','c']
 
-a = re.findall(pattern, babbling)
+# print(','.join(a))
