@@ -284,3 +284,30 @@ print(frequency)
 print(l[-1]-l[0]) 
 '''
 
+# 1427
+'''
+import sys
+input = sys.stdin.readline
+
+N = sorted(list(str(int(input()))),reverse = True)
+
+print(''.join(N))
+'''
+
+# 11650
+
+import sys
+input = sys.stdin.readline
+
+N = int(input())
+l = []
+
+for i in range(N):
+    a,b = map(int, input().split())
+    l.append([a,b])
+    
+l.sort(key = lambda x: (x[0],x[1]))
+
+for i in range(N):
+    print(l[i][0], l[i][1])
+

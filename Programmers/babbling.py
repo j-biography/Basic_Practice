@@ -1,18 +1,22 @@
+
+
 pattern = ['aya', 'ye', 'woo', 'ma']
 
-babbling = ['aya', 'yee', 'u', 'maa', 'wyeoo']
-babbling_join = ','.join(babbling)
+babbling = ['ayaye', 'uuuma', 'ye', 'yemawoo', 'ayaa']
+# babbling_join = ''.join(babbling)
 babbling_2 = []
+babbling_3 = []
 
-for i in pattern:
-    if i in babbling_join:
-        new = babbling_join.replace(i,'')
-babbling_2.append(new)
+for target_str in babbling:
+    for check_str in pattern:
+        if check_str in target_str:
+            new_target_str = target_str.replace(check_str, ' ')
+            target_str = new_target_str
+            continue
+    babbling_2.append(target_str)
     
-print(babbling_2)
-        
-            
-            
-# a = ['a','b','c']
-
-# print(','.join(a))
+for i in babbling_2:
+    babbling_3.append(i.strip())
+    
+print(babbling_3.count(''))
+    
