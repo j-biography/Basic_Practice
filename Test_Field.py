@@ -17,4 +17,8 @@
 # for i in range(5):
 #     print(i)
 
-print(max(2, 4))
+# print(max(2, 4))
+
+dots = [[1,4],[9,2],[3,8],[11,6]]
+
+print(dots[0],dots[1])
