@@ -160,7 +160,7 @@ for x in range(1, 1000+1):
     
 print(len(sequence)) # 조건을 충족하는 한수의 개수 출력
 '''
-
+'''
 sequence = []
 
 N = int(input())
@@ -172,7 +172,7 @@ for x in range(1, 1000+1):
     if count == 
 
 print(sequence)
-
+'''
 # 하나의 조건문으로 압축시키는 코드 작성 - 아직 미해결
 
             
