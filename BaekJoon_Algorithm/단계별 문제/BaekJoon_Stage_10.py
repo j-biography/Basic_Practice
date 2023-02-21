@@ -295,7 +295,27 @@ print(''.join(N))
 '''
 
 # 11650
+'''
+import sys
+input = sys.stdin.readline
 
+n = int(input())
+l = []
+
+for i in range(n):
+    a,b = map(int, input().split())
+    l.append([a,b])
+    
+l.sort(key = lambda x: (x[1],x[0]))
+
+for i in range(n):
+    print(l[i][0], l[i][1])
+    '''
+    
+# 1181
+
+# 원문
+'''
 import sys
 input = sys.stdin.readline
 
@@ -303,11 +323,71 @@ N = int(input())
 l = []
 
 for i in range(N):
-    a,b = map(int, input().split())
-    l.append([a,b])
+    l.append(str(input().strip())) # 개행문자(\n) 제거
     
-l.sort(key = lambda x: (x[0],x[1]))
+l = list(set(l))
+l.sort(key = lambda x: (len(x),x))
 
-for i in range(N):
-    print(l[i][0], l[i][1])
+for i in range(len(l)):
+    print(l[i])
+    '''
+    
+# 리스트 내포(list comprehension)을 활용한 축약본
+'''
+import sys
+input = sys.stdin.readline
 
+N = int(input())
+l = list(set([input().strip() for i in range(N)]))
+l.sort(key = lambda x: (len(x),x))
+
+for i in range(len(l)):
+    print(l[i])
+    '''
+
+# 10814
+'''
+import sys
+input = sys.stdin.readline
+
+N = int(input())
+l = [[input().split(),i] for i in range(N)] # 입력 순번(가입 순번)과 함께 입력 받음.
+l.sort(key = lambda x: (int(x[0][0]),int(x[1])))
+
+for i in range(len(l)):
+    print(l[i][0][0], l[i][0][1])
+    '''
+    
+# 18870
+
+# 최초 제출 - index(i) 형태는 시간 복잡도가 O(N).
+import sys
+input = sys.stdin.readline
+
+N = int(input())
+x = list(map(int, input().split()))
+x2 = sorted(list(set(x)))
+
+for i in range(len(x)):
+    print(x2.index(x[i]),end=' ')
+    
+    
+# 최종 제출 - index[i] 형태는 시간 복잡도가 O(1). 
+import sys
+input = sys.stdin.readline
+
+N = int(input())
+x = list(map(int, input().split()))
+x2 = sorted(list(set(x)))
+x3 = {}
+
+for key, value in enumerate(x2):
+    x3[value] = key
+
+for i in x:
+    print(x3[i],end=' ')
+    
+
+
+
+    
