@@ -1,30 +1,51 @@
+
 ##### 사전 연습 문제 알고리즘 - 1
+'''
+# 배열 nums 내의 숫자 중 3개의 수를 더했을 때 소수가 되는 경우의 개수를 구하라.
+# nums에 들어있는 숫자의 개수는 5개 이상 50개 이하이며,
+# nums의 각 원소는 1이상 1000이하의 자연수이고, 중복된 숫자는 들어있지 않다.
+'''
 
-import math
+# 브루트 포스(3-point)로 모든 조합을 구하고, 소수인지 판별.
 
-def solution(nums):
+nums = [1,3,5,7,9,10]
+prime = 0 # 소수의 개수
+
+# 조합 생성
+for i in range(len(nums)-2):
+    for j in range(i+1, len(nums)-1):
+        for k in range(j+1, len(nums)):
+            total = nums[i]+nums[j]+nums[k]
+            
+            # 소수 판별
+            for l in range(2, total+1):
+                if total != l and total % l == 0: 
+                    break
+                elif l == total:
+                    prime += 1
     
-    nums.sort()
-    max_sum = sum(nums[-1:-4:-1])
-    min_sum = sum(nums[0:3])
-    
-    prime = [i for i in range(min_sum, max_sum+1)]
-    
-    for i in range(len(prime)):
-        for j in range(2, int(math.sqrt(max_sum))+1):
-            if prime[i] != j and prime[i] % j == 0 and prime[i] in prime:
-                prime.remove(prime[i])
-            else:
-                continue
-    return prime
-
-nums = [1,2,7,6,4]
-
-print(solution(nums))
+print(prime)
 
 
-##### 사전 연습 문제 SQL - 1
+# itertools 라이브러리를 사용하여 모든 조합을 구하고, 소수인지 판별.
 
+from itertools import combinations
+
+nums = [1,3,5,7,9,10]
+prime = 0 # 소수의 개수
+
+# 조합 생성
+l = list(combinations(nums,3))
+
+# 소수 판별
+for i in l: # 숫자 3개 조합
+    for j in range(2, sum(i)+1):
+        if sum(i) != j and sum(i) % j == 0:
+            break
+        elif sum(i) == j:
+            prime += 1
+
+print(prime) 
 
 
 ##### 본 테스트 문제 알고리즘 - 1

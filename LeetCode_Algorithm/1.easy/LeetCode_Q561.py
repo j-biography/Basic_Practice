@@ -13,6 +13,7 @@ for i in range(len(l)):
     
 print(sum)
 
+
 # 2. 간단한 오름차순 풀이2 (책.Ver)
 
 nums = [1,4,3,2]
@@ -28,4 +29,22 @@ for n in nums:
         
 print(sum)
 
-# 3. 
+
+# 3. 짝수 index에 위치한 수 모두 더하기.
+# 발상의 전환. 굳이 어렵게 생각하지 않아도 창의력있게 해결할 수 있음을 보여주는 예
+
+nums = [1,4,3,2]
+nums.sort()
+sum = 0
+
+for i in range(len(nums)):
+    if i % 2 == 0:
+        sum += nums[i]
+        
+print(sum)
+
+
+# 4. 파이썬답게 매우 간단히(Pythonic Way)
+
+nums = [1,4,3,2]
+print(sum(sorted(nums)[::2])) # 가급적 sum을 변수명으로 사용하지 말자. 변수명으로 쓸거면 total을 사용하자.
