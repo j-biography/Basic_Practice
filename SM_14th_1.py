@@ -7,7 +7,7 @@
 '''
 
 # 브루트 포스(3-point)로 모든 조합을 구하고, 소수인지 판별.
-
+'''
 nums = [1,3,5,7,9,10]
 prime = 0 # 소수의 개수
 
@@ -24,11 +24,11 @@ for i in range(len(nums)-2):
                 elif l == total:
                     prime += 1
     
-print(prime)
+print(prime)'''
 
 
 # itertools 라이브러리를 사용하여 모든 조합을 구하고, 소수인지 판별.
-
+'''
 from itertools import combinations
 
 nums = [1,3,5,7,9,10]
@@ -45,7 +45,7 @@ for i in l: # 숫자 3개 조합
         elif sum(i) == j:
             prime += 1
 
-print(prime) 
+print(prime) '''
 
 
 ##### 본 테스트 문제 알고리즘 - 1
@@ -56,7 +56,7 @@ Level(경사로 단계), Height(적설량)이 LH = [3,1,4,10,1] 등의 형태로
 5단계의 경사로에 [3,1,4,10,1]의 눈이 내린다면, 각 경사 단계가 버틸 수 있는 정도까지 쌓이고 남은 눈은 다음 경사로로 넘어간다.
 이 경우 경사로에 쌓인 눈을 출력하라. > [1,3,4,7,4]
 '''
-
+'''
 LH = [0,1,4,10,1,9] # >> [0,1,4,7,4,9]
 
 # 경사로는 5단계에 국한되어있지 않다. 
@@ -73,7 +73,7 @@ for i in range(len(LH)):
         result.append(LH[i]+rest)
         rest = 0
 
-print(result)
+print(result)'''
 
 
 ##### 본 테스트 문제 알고리즘 - 2
@@ -88,6 +88,7 @@ print(result)
 
 
 ##### 본 테스트 문제 알고리즘 - 3
+# 25972와 유사
 '''
 여러 도미노 블록들이 Position(위치), Height(높이) 값을 가지고 주어진다.
 Position이 1이고, Height이 3인 도미노 블록[1,3]은 쓰러지면 Position 2,3,4에 있는 블록까지 무너뜨린다.
@@ -95,6 +96,35 @@ Position이 1이고, Height이 3인 도미노 블록[1,3]은 쓰러지면 Positi
 '''
 
 
+PH = [[1,10],[3,10],[5,1],[9,4],[13,1]] # 1개만 빼면 반드시 최소 4개가 무너지는 TestCase 
+M = 1
+
+l = []
+l_count = []
+
+# PH의 개수에서 M을 뺐을 때 가능한 조합 = PH! / (PH-M)! * M!
+# 백트래킹 재귀로 모든 조합별 최대 파괴되는 도미노의 수를 산출
+
+def dfs():
+    if len(l) == len(PH)-M:
+        count = 1
+        rest = 0
+        for i in range(len(l)-1):
+            if max(rest, sum(l[i])) >= l[i+1][0]:
+                rest = max(rest, sum(l[i]))
+                count += 1
+        l_count.append(count)
+        return
+    
+    for num in PH:
+        if len(l) == 0 or (num[0] > l[-1][0] and num not in l):
+            l.append(num)
+            dfs()
+            l.pop()
+
+dfs()
+print(min(l_count))
+    
 
 
 ##### 본 테스트 문제 알고리즘 - 4
@@ -104,8 +134,42 @@ Position이 1이고, Height이 3인 도미노 블록[1,3]은 쓰러지면 Positi
 # 모두가 짝이 맞는 젓가락을 가지기 위해 해야하는 최소 교환 횟수 N을 출력하라.
 '''
 
-# 버블 정렬로 해결
+# 삽입 정렬로 해결
+'''
+chop = ['CA','BD','BA','CD'] # [3,1],[2,4],[2,1],[3,4]
+N = len(chop)
+new = [[]*i for i in range(N)]
+count = 0
 
+for i in range(N):
+    for j in range(2):
+        new[i].append(ord(chop[i][j])-64)
+    
+for i in range(N):
+    if new[i][0] == new[i][1]:
+        continue
+    else:
+        max(new[i][0],new[i][1]), min(new[i+1][0],new[i+1][1])
+        '''
+        
+# 정렬로 해결(무조건 가장 가까운 조합부터 변경)
+'''
+chop = ['CA','BD','BA','CD']
+N = len(chop)
+new = [[]*i for i in range(N)]
+
+for i in range(N):
+    for j in range(2):
+        new[i].append(ord(sorted(chop[i])[j])-64)
+        
+for i in range(N):
+    if new[i][0] == new[i][1]:
+        continue
+    for j in range(N):
+        if new[i+j][1] == new[i+j+1][0]:
+            '''
+    
+            
 
 
 ##### 본 테스트 문제 SQL - 1
