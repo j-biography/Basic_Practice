@@ -56,7 +56,7 @@ def queue(start_vertex):
     discover = [start_vertex]
     queue = [start_vertex]
     while queue:
-        vertex = queue.pop(0)
+        vertex = queue.pop(0) # pop(0)이 실질적으로 큐의 선입선출 기능을 구현.
         for new_way in graph[vertex]:
             if new_way not in discover:
                 discover.append(new_way)

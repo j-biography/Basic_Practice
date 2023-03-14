@@ -109,8 +109,167 @@ def dfs():
 dfs()
 '''
 
-# 9663
+# 2580(스도쿠)
 
+# 무식한 방식 / 실패
+
+'''
+Arr = [list(map(int, input().split())) for i in range(9)]
+# result = [[]*i for i in range(9)]
+
+def sudoku():
+    for i in range(9):
+        if Arr[i].count(0) == 0: #가로줄 탐색
+            continue
+        
+        for j in range(9):
+            if Arr[i][j] != 0:
+                continue
+            
+            elif Arr[i][j] == 0 and Arr[i].count(0) == 1:
+                Arr[i][j] = 45 - sum(Arr[i])
+            
+            elif Arr[i][j] == 0 and Arr[i].count(0) >= 2:
+                count = 0
+                total = 0
+                for k in range(9): # 세로줄 탐색
+                    if Arr[k][j] == 0:
+                        count += 1
+                    elif Arr[k][j] != 0:
+                        total += Arr[k][j]
+                        
+                if count == 1:
+                    Arr[i][j] = 45 - total
+                elif count >= 2:
+                    count = 0
+                    total = 0
+                    x = i // 3
+                    y = j // 3
+                    for m in range(3): # 3X3 탐색
+                        for n in range(3):
+                            if Arr[(x*3)+m][(y*3)+n] == 0:
+                                count += 1
+                            elif Arr[(x*3)+m][(y*3)+n] != 0:
+                                total += Arr[(x*3)+m][(y*3)+n]
+                                
+                    if count == 1:
+                        Arr[i][j] = 45 - total
+                    elif count >= 2:
+                        continue
+    
+    for i in range(9):
+        if Arr[i].count(0) != 0:
+            sudoku()
+            return
+        
+    for j in range(9):
+        for k in range(9):
+            print(Arr[j][k],end=' ')
+        print('')       
+                    
+sudoku()
+'''
+
+# 엘레강스한 DFS(백트래킹) 재귀 구현
+'''
+Arr = [list(map(int, input().split())) for i in range(9)]
+zero = [(i, j) for i in range(9) for j in range(9) if Arr[i][j] == 0]
+
+def check(i, j):
+    nums = [1,2,3,4,5,6,7,8,9]
+    
+    
+    for k in range(9):
+        if Arr[i][k] in nums:
+            nums.remove(Arr[i][k])
+        if Arr[k][j] in nums:
+            nums.remove(Arr[k][j])
+    
+    # if len(nums) == 1:
+    #     return nums
+    
+    x = i // 3
+    y = j // 3
+    
+    for a in range(3):
+        for b in range(3):
+            if Arr[(x*3)+a][(y*3)+b] in nums:
+                nums.remove(Arr[(x*3)+a][(y*3)+b])
+                    
+    return nums
+
+answer = False
+def dfs(x):
+    global answer
+    
+    if answer:
+        return 
+    
+    if x == len(zero):
+        for row in Arr:
+            print(*row)
+        answer = True
+        return
+    
+    else:
+        (i, j) = zero[x]
+        nums = check(i, j)
+        
+        for num in nums:
+            Arr[i][j] = num
+            dfs(x+1)
+            Arr[i][j] = 0
+    
+dfs(0)'''
+
+
+# 바로 위 코드 톺아보면서 정리 & 이해한되는 부분 숙지(시간초과)
+
+import sys
+input = sys.stdin.readline
+
+Sudoku = [list(map(int, input().split())) for i in range(9)]
+zero = [(i, j) for i in range(9) for j in range(9) if Sudoku[i][j] == 0]
+
+def check(i, j):
+    nums = [1,2,3,4,5,6,7,8,9]
+    
+    for k in range(9):
+        if Sudoku[i][k] in nums:
+            nums.remove(Sudoku[i][k])
+        if Sudoku[k][j] in nums:
+            nums.remove(Sudoku[k][j])
+     
+    x = i // 3
+    y = j // 3
+    
+    for a in range(x*3, (x+1)*3):
+        for b in range(y*3, (y+1)*3):
+            if Sudoku[a][b] in nums:
+                nums.remove(Sudoku[a][b])
+                
+    return nums
+
+def dfs(x):
+    
+    if x == len(zero):
+        for i in Sudoku:
+            print(*i)
+        return
+    
+    (i, j) = zero[x]
+    nums = check(i, j)
+    
+    for num in nums: # 정답이 아니더라도 후보군을 일단 넣고, 끝까지 가본다. 
+        Sudoku[i][j] = num
+        dfs(x+1)
+        Sudoku[i][j] = 0
+            
+dfs(0)
+    
+                
+            
+    
 
 
 

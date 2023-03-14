@@ -46,11 +46,13 @@ for i in range(1,n+1):
 print(sum)
 '''
 
-# 파이썬 알고리즘 테스트 - 12장 그래프 탐색 
+'''
+A = list(map(int, input().split()))
 
-# 그래프 A가 있을 때, 정점을 모두 방문하는 루트를 DFS / BFS
+print(sum(A))
 
-l = [1,2,0,0,0,0,3,4,5]
+A = int(int(input())/4)
 
-print(l.pop())
-print(l.pop(3))
+print('long ' * A,'int', sep='')
+'''
+
